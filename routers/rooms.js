@@ -17,8 +17,9 @@ router.get('/room/:roomId/board',  async (req, res) => {})
 router.get('/room/:roomId/timeline',  async (req, res) => {})
 
 router.post('/room',  async (req, res) => {
-  const userId = res.locals.user._id
-  // const userId = 'asldkja123123'
+  console.log('in')
+  // const userId = res.locals.user._id
+  const userId = 'asldkja123123'
   const { roomName, roomImage, subtitle, tag, inviteCode } = req.body
 
   // if (!inviteCode) {
@@ -36,6 +37,8 @@ router.post('/room',  async (req, res) => {
       }
       return
     })
+    res.json({ result: '성공' })
+
   // }
 //   if (inviteCode) {
 //     find = await Room.findOne({ inviteCode: inviteCode })
@@ -55,13 +58,16 @@ router.put('/room',  async (req, res) => {
 })
 
 router.delete('/room',  async (req, res) => {
-  const userId = res.locals.user._id
+  // const userId = res.locals.user._id
   const { roomId } = req.body
   const findRoom = await Room.findById(roomId)
 
-  if (userId in findRoom) {
-    await Room.findByIdAndRemove(roomId)
-  }
+  await Room.findByIdAndRemove(roomId)
+  res.send()
+
+  // if (userId in findRoom) {
+  //   await Room.findByIdAndRemove(roomId)
+  // }
 })
 
 module.exports = router;
