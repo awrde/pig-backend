@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+const Timeline = require('./timeline')
+const Worksheet = require('./worksheet')
+const { Schema } = mongoose;
 
 const roomSchema = new mongoose.Schema({
   roomName: String,
@@ -8,11 +11,11 @@ const roomSchema = new mongoose.Schema({
   subtitle: String,
   tag: [String],
   members: [{
-    type: mongoose.Schema.ObjectId,
+    type: Schema.ObjectId,
     ref: 'User'
   }],
-  timeline: [timeline.schema],
-  worksheet: [worksheet.schema],
+  timeline: [Timeline.schema],
+  worksheet: [Worksheet.schema],
   createdAt: {
     type: Date,
     default: Date.now,

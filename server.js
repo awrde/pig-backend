@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+// const models = require('./schemas/index.js')
+// const router = require('./routers/index.js')
 const port = 3000;
 
 // 몽고db 붕어빵 틀
@@ -14,6 +16,7 @@ app.use(express.static('public'));
 // 라우터
 const routers = require("./routers");
 app.use("/api", [routers]);
+// app.use(router)
 
 app.use((req, res, next) => {
     console.log(req);
